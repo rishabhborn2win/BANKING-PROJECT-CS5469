@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto+Slab&display=swap');
 .App {
   text-align: center;
 }
@@ -35,4 +36,83 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.mainCard{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+  z-index: 10;
+}
+
+.mainnn{
+  font-family: 'Roboto Slab', serif;
+  font-size: 15px;
+  color: white;
+  position: relative;
+  z-index: 10;
+  margin-top: 13%;
+  background-color: inherit;
+  border: none;
+}
+.balance{
+  font-size: 30px;
+  margin-bottom: 30px;
+  text-decoration: underline;
+  line-height: 15px;
+}
+.buttonHome{
+  background-color: #2CCE7B;
+  border: none;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+}
+.buttonHome:hover{
+  color:white;
+   background-color:#194473;
+}
+.buttonHome1{
+  background-color: #E34836;
+  border: none;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+}
+.buttonHome1:hover{
+  color:white;
+   background-color:#194473;
+}
+.header{
+  font-family: 'Raleway', sans-serif;
+  font-size: 35px;
+  background-color: #184F61;
+  color:white;
+  border:none;
+  position: relative;
+  z-index: 10;
+}
+.textt{
+  border-radius: 15px;
+}
+.footer{
+  font-family: 'Raleway', sans-serif;
+
+  background-color: #184F61;
+  color: white;
+  position: relative;
+  z-index: 10;
+   width: 100%;
+   position: absolute;
+   bottom: 0;
 }
