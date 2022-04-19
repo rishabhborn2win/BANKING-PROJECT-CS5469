@@ -3,6 +3,7 @@ import "./App.css";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { loadContract } from "./utils/load-contract";
+import Bgg from "./components/Bgg.js";
 
 function App() {
   const [web3Api, setWeb3Api] = useState({
@@ -14,6 +15,7 @@ function App() {
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState(null);
   const [reload, shouldReload] = useState(false);
+  const [amount, setAmount] = useState(0);
 
   const reloadEffect = () => shouldReload(!reload);
   const setAccountListener = (provider) => {
@@ -34,18 +36,6 @@ function App() {
       } else {
         console.error("Please install MetaMask!");
       }
-      // if (window.ethereum) {
-      //   provider = window.ethereum;
-      //   try {
-      //     await provider.enable();
-      //   } catch {
-      //     console.error("User is not allowed");
-      //   }
-      // } else if (window.web3) {
-      //   provider = window.web3.currentProvider;
-      // } else if (!process.env.production) {
-      //   provider = new Web3.providers.HttpProvider("http://localhost:7545");
-      // }
     };
 
     loadProvider();
@@ -64,14 +54,17 @@ function App() {
     const { web3, contract } = web3Api;
     await contract.transfer({
       from: account,
-      value: web3.utils.toWei("2", "ether"),
+      value: web3.utils.toWei(amount, "ether"),
     });
     reloadEffect();
   };
 
+  const inputChangeHandler = (event) => {
+     setAmount(event.target.value);
+  }
   const withdrawFund = async () => {
     const { contract, web3 } = web3Api;
-    const withdrawAmout = web3.utils.toWei("2", "ether");
+    const withdrawAmout = web3.utils.toWei(amount, "ether");
     await contract.withdraw(withdrawAmout, {
       from: account,
     });
@@ -89,10 +82,13 @@ function App() {
   // console.log(web3Api.web3);
   return (
     <>
-      <div class="card text-center">
-        <div class="card-header">Funding</div>
-        <div class="card-body">
-          <h5 class="card-title">Balance: {balance} ETH </h5>
+
+    <div class="card-header text-center header">Decentralized Banking System using Blockchain</div>
+    <Bgg />
+      <div class="card text-center mainnn">
+
+        <div class="card-body ">
+          <h5 class="card-title balance">Balance: {balance} ETH </h5>
           <p class="card-text">
             Account : {account ? account : "not connected"}
           </p>
@@ -109,16 +105,24 @@ function App() {
             Connect to metamask
           </button> */}
           &nbsp;
-          <button type="button" class="btn btn-success " onClick={transferFund}>
+          <label>Amount : </label>  &nbsp;
+          <input type="Number" step="0.01" placeholder="0" className="textt"
+          onChange={event => inputChangeHandler(event)}
+            />
+
+            <div className="mainCard">
+          <button type="button" class="btn buttonHome " onClick={transferFund}>
             Transfer
           </button>
           &nbsp;
-          <button type="button" class="btn btn-primary " onClick={withdrawFund}>
+          <button type="button" class="btn buttonHome1 " onClick={withdrawFund}>
             Withdraw
           </button>
+          </div>
         </div>
-        <div class="card-footer text-muted">NITP Blockchain</div>
+
       </div>
+      <div class="card-footer text-center footer">Group - 6</div>
     </>
   );
 }
